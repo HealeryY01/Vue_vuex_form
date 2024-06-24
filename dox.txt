@@ -1,0 +1,5 @@
+--Chức năng add user
+b1: Xử lý form
+b2: Xử lý sựu kiện click submit -> dispatch action lên store
+b3: Xử lý action -> mutation (update stare)
+b4: Lấy stare từ store về để show lên màn hình 

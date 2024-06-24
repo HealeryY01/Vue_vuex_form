@@ -32,7 +32,7 @@ const store = createStore({
           type: "CLIENT",
         },
       ],
-      searchName: "phong",
+      searchName: "",
     };
   },
   getters: {
@@ -49,6 +49,13 @@ const store = createStore({
   mutations: {
     setSearchNameMutation(state, payload) {
       state.searchName = payload;
+    },
+  },
+  actions: {
+    setSearchNameAction(context, payload) {
+      setTimeout(() => {
+        context.commit("setSearchNameMutation", payload);
+      }, 500);
     },
   },
 });

@@ -6,7 +6,7 @@
 
 <script>
 import UserItem from "./UserItem.vue";
-import { mapGetters, mapState } from 'vuex'
+import { mapGetters, mapState } from 'vuex';
 export default {
   components: {
     UserItem,
