@@ -7,11 +7,8 @@
           <div class="card-bar-controll">
             <search-bar></search-bar>
             <div>
-              <button
-                type="button"
-                class="mr-2 btn btn-gradient-primary btn-icon-text"
-                @click="handleOpenModalCartList"
-              >
+              <button type="button" class="mr-2 btn btn-gradient-primary btn-icon-text"
+                @click="handleOpenModalCartList">
                 <i class="mdi mdi-account-plus btn-icon-prepend"></i> ADD
               </button>
             </div>
@@ -34,23 +31,20 @@
       </div>
     </div>
     <teleport to="#app">
-      <app-modal
-        :isOpen="isOpenModalCartList"
-        :handelCloseModal="handleCloseModalCartList"
-      >
-        <form-add-user></form-add-user>
+      <app-modal :isOpen="isOpenModalCartList" :handelCloseModal="handleCloseModalCartList">
+        <form-user></form-user>
       </app-modal>
     </teleport>
   </div>
 </template>
 
 <script>
-import FormAddUser from "./FormAddUser.vue";
+import FormUser from "./FormUser.vue";
 import SearchBar from "./SearchBar.vue";
 import UserList from "./UserList.vue";
 export default {
   components: {
-    FormAddUser,
+    FormUser,
     SearchBar,
     UserList,
   },

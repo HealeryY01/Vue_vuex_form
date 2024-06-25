@@ -3,3 +3,9 @@ b1: Xử lý form
 b2: Xử lý sựu kiện click submit -> dispatch action lên store
 b3: Xử lý action -> mutation (update stare)
 b4: Lấy stare từ store về để show lên màn hình 
+
+--Chức năng xóa remove user
+b1: Xác định component có nút xóa (UserItem)
+b2: Xử lý sựu kiện click nút xóa -> dispatch action (gửi kèm id)
+b3: Lên vuex(store) xử lý action -> commit mutation (xóa và cập nhật lại state)
+b4: Lấy stare từ store về để show lên màn hình

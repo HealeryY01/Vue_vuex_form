@@ -21,7 +21,7 @@ const store = createStore({
           type: "ADMIN",
         },
         {
-          id: 1,
+          id: 2,
           name: "Phan Thùy Duyên",
           avatar:
             "https://haycafe.vn/wp-content/uploads/2023/06/Anh-Avatar-nu-ca-tinh.jpg",
@@ -50,12 +50,31 @@ const store = createStore({
     setSearchNameMutation(state, payload) {
       state.searchName = payload;
     },
+    addUserMutation(state, payload) {
+      // state.userList = [...state.userList, payload]; es6
+      state.userList.push(payload); //es5
+    },
+    removeUserAction(state, payload) {
+      const index = state.userList.findIndex((user) => user.id === payload);
+      if (index !== -1) {
+        state.userList.splice(index, 1);
+      } else {
+        alert("không tìm thấy id phù hợp");
+      }
+    },
   },
   actions: {
     setSearchNameAction(context, payload) {
       setTimeout(() => {
         context.commit("setSearchNameMutation", payload);
       }, 500);
+    },
+    addUserAction(context, payload) {
+      const newUser = { ...payload, id: Math.random() };
+      context.commit("addUserMutation", newUser);
+    },
+    removeUserAction(context, payload) {
+      context.commit("removeUserAction", payload);
     },
   },
 });

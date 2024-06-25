@@ -4,48 +4,50 @@
       <form class="forms-sample">
         <div class="form-group">
           <label for="username">Username</label>
-          <input type="text" class="form-control" id="username" placeholder="Username" v-model="name" />
+          <input type="text" class="form-control" id="username" placeholder="Username" v-model="user.name" />
         </div>
         <div class="form-group">
           <label for="age">Age</label>
-          <input type="number" class="form-control" id="age" placeholder="Age" v-model="age" />
+          <input type="number" class="form-control" id="age" placeholder="Age" v-model="user.age" />
         </div>
         <div class="form-group">
           <label for="avatar">Avatar</label>
-          <input type="text" class="form-control" id="avatar" placeholder="avatar" v-model="avatar" />
+          <input type="text" class="form-control" id="avatar" placeholder="avatar" v-model="user.avatar" />
         </div>
         <div class="form-group">
           <label for="">Programming Language : </label>
           <div class="form-row-flex">
             <div class="form-check">
               <label class="form-check-label">
-                <input type="checkbox" class="form-check-input" v-model="programmingLanguage" value="JavaScript" />
+                <input type="checkbox" class="form-check-input" v-model="user.programmingLanguage" value="JavaScript" />
                 JavaScript
                 <i class="input-helper"></i></label>
             </div>
             <div class="form-check">
               <label class="form-check-label">
-                <input type="checkbox" class="form-check-input" v-model="programmingLanguage" value="Java" /> Java
+                <input type="checkbox" class="form-check-input" v-model="user.programmingLanguage" value="Java" /> Java
                 <i class="input-helper"></i></label>
             </div>
             <div class="form-check">
               <label class="form-check-label">
-                <input type="checkbox" class="form-check-input" v-model="programmingLanguage" value="PHP" /> PHP
+                <input type="checkbox" class="form-check-input" v-model="user.programmingLanguage" value="PHP" /> PHP
                 <i class="input-helper"></i></label>
             </div>
             <div class="form-check">
               <label class="form-check-label">
-                <input type="checkbox" class="form-check-input" v-model="programmingLanguage" value="Python" /> Python
+                <input type="checkbox" class="form-check-input" v-model="user.programmingLanguage" value="Python" />
+                Python
                 <i class="input-helper"></i></label>
             </div>
             <div class="form-check">
               <label class="form-check-label">
-                <input type="checkbox" class="form-check-input" v-model="programmingLanguage" value="C#" /> C#
+                <input type="checkbox" class="form-check-input" v-model="user.programmingLanguage" value="C#" /> C#
                 <i class="input-helper"></i></label>
             </div>
             <div class="form-check">
               <label class="form-check-label">
-                <input type="checkbox" class="form-check-input" v-model="programmingLanguage" value="C/C++" /> C/C++
+                <input type="checkbox" class="form-check-input" v-model="user.programmingLanguage" value="C/C++" />
+                C/C++
                 <i class="input-helper"></i></label>
             </div>
           </div>
@@ -55,17 +57,20 @@
           <div class="d-flex">
             <div class="form-check mr-3">
               <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="gender" id="gender" value="Nam" v-model="gender" />
+                <input type="radio" class="form-check-input" name="gender" id="gender" value="Nam"
+                  v-model="user.gender" />
                 Nam <i class="input-helper"></i></label>
             </div>
             <div class="form-check mr-3">
               <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="gender" id="gender" value="Nữ" v-model="gender" />
+                <input type="radio" class="form-check-input" name="gender" id="gender" value="Nữ"
+                  v-model="user.gender" />
                 Nữ <i class="input-helper"></i></label>
             </div>
             <div class="form-check mr-3">
               <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="gender" id="gender" value="Khác" v-model="gender" />
+                <input type="radio" class="form-check-input" name="gender" id="gender" value="Khác"
+                  v-model="user.gender" />
                 Khác <i class="input-helper"></i></label>
             </div>
           </div>
@@ -73,7 +78,7 @@
         <div class="form-group row">
           <label class="col-sm-3 col-form-label">Type User : </label>
           <div class="col-sm-9">
-            <select class="form-control" v-model="type">
+            <select class="form-control" v-model="user.type">
               <option value="ADMIN">Admin</option>
               <option value="CLIENT">Client</option>
             </select>
@@ -81,9 +86,9 @@
         </div>
         <div class="form-group">
           <label for="description">Description</label>
-          <textarea v-model="description" class="form-control" id="description" rows="4"></textarea>
+          <textarea v-model="user.description" class="form-control" id="description" rows="4"></textarea>
         </div>
-        <button type="submit" class="btn btn-gradient-primary mr-2">
+        <button type="submit" class="btn btn-gradient-primary mr-2" @click.prevent="handleAddUser(user)">
           Submit
         </button>
         <button class="btn btn-light">Cancel</button>
@@ -93,17 +98,31 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
+  props: {
+    userInfo: {
+      type: Object,
+    },
+  },
   data() {
     return {
-      name: "",
-      avatar: "",
-      age: 0,
-      description: "",
-      programmingLanguage: [],
-      gender: "Nam",
-      type: "CLIENT",
+      user: {
+        name: "",
+        avatar: "",
+        age: 0,
+        description: "",
+        programmingLanguage: [],
+        gender: "Nam",
+        type: "CLIENT",
+      },
     };
+  },
+  methods: {
+    ...mapActions({
+      handleAddUser: "addUserAction",
+    }),
   },
 };
 </script>
