@@ -6,7 +6,8 @@
 
 <script>
 import UserItem from "./UserItem.vue";
-import { mapGetters, mapState } from 'vuex';
+import { createNamespacedHelpers } from "vuex";
+const { mapGetters, mapState, mapActions } = createNamespacedHelpers("user");
 export default {
   components: {
     UserItem,
@@ -19,13 +20,21 @@ export default {
       return false;
     },
     ...mapState({
-      userList: (state) => state.userList,
+      userList: (state) => state.user.userList,
       // users: 'userList',
     }),
     ...mapGetters({
       userListFilteBoy: "userListByBoy",
       userListBySearchName: "userListBySearchName",
     }),
+  },
+  methods: {
+    ...mapActions({
+      getAllUser: "getAllUserAction",
+    }),
+  },
+  created() {
+    this.getAllUser();
   },
 };
 </script>

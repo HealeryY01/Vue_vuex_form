@@ -88,7 +88,7 @@
           <label for="description">Description</label>
           <textarea v-model="user.description" class="form-control" id="description" rows="4"></textarea>
         </div>
-        <button type="submit" class="btn btn-gradient-primary mr-2" @click.prevent="handleAddUser(user)">
+        <button type="submit" class="btn btn-gradient-primary mr-2" @click.prevent="handleSubmit">
           Submit
         </button>
         <button class="btn btn-light">Cancel</button>
@@ -98,8 +98,8 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
-
+import { createNamespacedHelpers } from "vuex";
+const { mapActions } = createNamespacedHelpers("user");
 export default {
   props: {
     userInfo: {
@@ -120,9 +120,24 @@ export default {
     };
   },
   methods: {
+    handleSubmit() {
+      if (this.userInfo) {
+        //update
+        this.handleUpdateUser(this.user);
+      } else {
+        this.handleAddUser(this.user);
+      }
+    },
     ...mapActions({
       handleAddUser: "addUserAction",
+      handleUpdateUser: "updateUserAction",
     }),
+  },
+  created() {
+    //chuyển đổi props thành data
+    if (this.userInfo) {
+      this.user = { ...this.userInfo };
+    }
   },
 };
 </script>
